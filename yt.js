@@ -1118,7 +1118,8 @@ function playVid(data){
     document.getElementsByClassName('title').innerHTML=`${data.snippet.title}`;
     document.getElementsByClassName('desc').innerHTML=`${data.snippet.description}`;
     document.getElementsByClassName('title')[0].innerHTML = data.items[i].snippet.title;
-    setEve();
+    setTimeout(setEve,1000);
+    
 }
 
 // video playing functions
@@ -1132,7 +1133,7 @@ function setLis(){
             playVid(data.items[i]);
             setEve();
             document.getElementsByClassName('player')[0].style.display = "block";
-            setLis();
+            // setLis();
         })
     }
 
@@ -1275,9 +1276,8 @@ cls[0].addEventListener('click',()=>{
   document.getElementsByClassName('player')[0].style.display = "none";
   document.getElementsByTagName('iframe')[0].setAttribute('src',"");
 });
+// setVids();
 // setEve();
 setLis();
 setEve();
-// setVids();
-
 // rFix();
