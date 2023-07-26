@@ -1069,10 +1069,10 @@ function setVids(){
             </div>
             <div class="icn">
                 <span class="close" id="cbtn"><i class="large material-icons ren" >expand_more</i></span>
-                <span class="close"><i class="large material-icons">close</i></span>
+                <span class="close clx"><i class="large material-icons">close</i></span>
             </div>
-            <iframe id="yvid" width="1280" height="720" src="https://www.youtube.com/embed/wlC_eFbxwDo?controls=0" title="Aradhya - Lyrical | Kushi | Vijay Deverakonda, Samantha | Hesham Abdul Wahab| Sid Sriram | Chinmayi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <h3 class="title">Sample title of the Video</h3>
+            <iframe id="yvid" width="1280" class="yt_player_iframe" height="720" src="https://www.youtube.com/embed/wlC_eFbxwDo?controls=0" title="Aradhya - Lyrical | Kushi | Vijay Deverakonda, Samantha | Hesham Abdul Wahab| Sid Sriram | Chinmayi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <h3 class="title"></h3>
             <p class="desc"></p>
         </div>
     `;
@@ -1117,12 +1117,12 @@ function playVid(data){
     document.querySelector('iframe').setAttribute("title",`${data.snippet.title}`);
     document.getElementsByClassName('title').innerHTML=`${data.snippet.title}`;
     document.getElementsByClassName('desc').innerHTML=`${data.snippet.description}`;
+    document.getElementsByClassName('title')[0].innerHTML = data.items[i].snippet.title;
     setEve();
 }
 
 // video playing functions
 function setLis(){
-
     var videos = document.querySelectorAll(".str");
     console.log(videos)
     for(let i=0 ; i<videos.length;i++){
@@ -1131,8 +1131,9 @@ function setLis(){
             console.log(data.items[i].snippet.title)
             playVid(data.items[i]);
             setEve();
+            document.getElementsByClassName('player')[0].style.display = "block";
+            setLis();
         })
-        // playVid(data.items[i]);
     }
 
 }
@@ -1177,23 +1178,13 @@ btns[1].addEventListener('click',()=>{
     pause();
     console.log("pause")
 })
-// to stop the video
-function stop() {
-    let video = document.getElementById("yvid")
-    video.contentWindow.postMessage( '{"event":"command", "func":"playVideo", "args":""}', '*');
- }
- // to pause the video
- function pause() {
-    let video = document.getElementById("yvid")
-    video.contentWindow.postMessage( '{"event":"command", "func":"pauseVideo", "args":""}', '*');
- }
 
  document.getElementById('yvid').onload = function() {
     // alert('myframe is loaded');
     setTimeout(()=>{
         document.getElementsByClassName('loading')[0].classList.add('dis');
         document.getElementsByClassName('player')[0].classList.remove('dis');
-    },1550);
+    },3550);
     document.getElementsByClassName('loading')[0].classList.add('fade')
   };
 
@@ -1223,13 +1214,14 @@ function fVid(){
         })
         .catch(error => console.log('error', error));
         setEve();
+        setLis();
 }
 
   var sub = document.getElementById('sub');
   sub.addEventListener('click',(e)=>{
     e.preventDefault();
     // document.querySelector(".vids").innerHTML="";
-    fVid();
+    // fVid(); fetch video
     sFix();
     console.log("search clicked");
     
@@ -1276,3 +1268,15 @@ function rFix(){
       element.classList.remove('line_fix');
   });
 }
+
+var cls = document.getElementsByClassName('clx');
+cls[0].addEventListener('click',()=>{
+  console.log("cls clickedd")
+  document.getElementsByClassName('player')[0].style.display = "none";
+  document.getElementsByTagName('iframe')[0].setAttribute('src',"");
+});
+// setVids();
+// setEve();
+setLis();
+setEve();
+// rFix();
