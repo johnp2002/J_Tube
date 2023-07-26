@@ -1055,6 +1055,34 @@ hm[0].addEventListener('click',()=>{
   rFix();
 })
 
+var trn = document.getElementsByClassName('trn');
+trn[0].addEventListener('click',()=>{
+  document.getElementsByClassName('vids')[0].innerHTML=`
+    <h1 style="color: grey; font-weight: 100;">Currently no videos available on <span style="font-weight: 600;">Trending</span></h1>
+  `
+});
+
+var subs = document.getElementsByClassName('sbs');
+subs[0].addEventListener('click',()=>{
+  document.getElementsByClassName('vids')[0].innerHTML=`
+    <h1 style="color: grey; font-weight: 100;">Currently no videos available on <span style="font-weight: 600;" >Subscriptions</span></h1>
+  `
+});
+
+var his = document.getElementsByClassName('his');
+his[0].addEventListener('click',()=>{
+  document.getElementsByClassName('vids')[0].innerHTML=`
+    <h1 style="color: grey; font-weight: 100;">Currently no videos available on <span style="font-weight: 600;" >History</span></h1>
+  `
+});
+
+var lkv = document.getElementsByClassName('lkv');
+lkv[0].addEventListener('click',()=>{
+  document.getElementsByClassName('vids')[0].innerHTML=`
+    <h1 style="color: grey; font-weight: 100;">Currently no videos available on <span style="font-weight: 600;" >Liked Videos</span></h1>
+  `
+});
+
 function setVids(){
     var box = document.getElementsByClassName('vids')
     box[0].innerHTML = `
@@ -1093,6 +1121,7 @@ function setVids(){
         
     });
     setEve();
+    // clxs();
 }
 setVids()
 
@@ -1119,7 +1148,7 @@ function playVid(data){
     document.getElementsByClassName('desc').innerHTML=`${data.snippet.description}`;
     document.getElementsByClassName('title')[0].innerHTML = data.items[i].snippet.title;
     setTimeout(setEve,1000);
-    
+    clxs();
 }
 
 // video playing functions
@@ -1222,7 +1251,7 @@ function fVid(){
   sub.addEventListener('click',(e)=>{
     e.preventDefault();
     // document.querySelector(".vids").innerHTML="";
-    // fVid(); fetch video
+    fVid(); //fetch video
     sFix();
     console.log("search clicked");
     
@@ -1270,12 +1299,16 @@ function rFix(){
   });
 }
 
-var cls = document.getElementsByClassName('clx');
-cls[0].addEventListener('click',()=>{
-  console.log("cls clickedd")
-  document.getElementsByClassName('player')[0].style.display = "none";
-  document.getElementsByTagName('iframe')[0].setAttribute('src',"");
-});
+var clbs = document.getElementsByClassName('clx');
+function clxs(){
+
+  clbs[0].addEventListener('click',()=>{
+    console.log("cls clickedd")
+    document.getElementsByClassName('player')[0].style.display = "none";
+    document.getElementsByTagName('iframe')[0].setAttribute('src',"");
+  });
+}
+clxs();
 // setVids();
 // setEve();
 setLis();
