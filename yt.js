@@ -1275,8 +1275,9 @@ cls[0].addEventListener('click',()=>{
   document.getElementsByClassName('player')[0].style.display = "none";
   document.getElementsByTagName('iframe')[0].setAttribute('src',"");
 });
-// setVids();
+setVids();
 // setEve();
 setLis();
 setEve();
+
 // rFix();
