@@ -1,5 +1,5 @@
 # J_Tube
 A clone website of Youtube
 
-# Deplay link of WEbsite
+# Deploy link of Website
 https://jtube.onrender.com/
